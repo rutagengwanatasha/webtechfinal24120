@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Refrigeration System as Air Conditioning</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #4CAF50;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Refrigeration System as Air Conditioning</h1>
+<form th:action="@{/clientform}" method="POST" enctype="multipart/form-data" th:object="${refrigeration}">
+    <label for="client_name">Client Name:</label>
+    <input type="text" id="client_name" name="client_name" th:field="*{clientName}" required>
+
+    <label for="client_email">Client Email:</label>
+    <input type="email" id="client_email" name="client_email" th:field="*{email}" required>
+
+    <label for="client_location">Client Location:</label>
+    <input type="text" id="client_location" name="client_location" th:field="*{clientLocation}" required>
+
+    <label for="equipment_location">Equipment Location:</label>
+    <input type="text" id="equipment_location" name="equipment_location" th:field="*{equipmentLocation}" required>
+
+    <label for="phone_number">Phone Number:</label>
+    <input type="tel" id="phone_number" name="phone_number" th:field="*{phoneNumber}" required>
+
+    <label for="work_to_do">Work To Do:</label>
+    <textarea id="work_to_do" name="work_to_do" rows="5" th:field="*{workToDo}" required></textarea>
+
+    <label for="work_explanation">Work Explanation:</label>
+    <textarea id="work_explanation" name="work_explanation" rows="5" th:field="*{workExplanation}" required></textarea>
+
+    <label for="equipment_photo">Equipment Photo:</label>
+    <input type="file" id="equipment_photo" name="file">
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

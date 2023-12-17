@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>User Dashboard</title>
+    <link rel="shortcut icon" href="WasacGroupLogo.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f5f8;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-container {
+                padding: 20px;
+            }
+        }
+
+        /* Consistent Styling */
+        :root {
+            --primary-color: #007bff;
+            --link-hover-color: #0056b3;
+        }
+
+        h2,
+        th,
+        a {
+            color: var(--primary-color);
+        }
+
+        a:hover {
+            color: var(--link-hover-color);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Logo Styling */
+        .form-logo {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            height: auto;
+            filter: invert(1); /* Invert the color of the logo */
+        }
+    </style>
+</head>
+
+<body>
+<div class="dashboard-container">
+    <img class="form-logo" src="/images/spc.png" alt="Logo" />
+
+    <h2>Welcome to Admin Dashboard</h2>
+    <p>Logged as: <span sec:authentication="name"></span></p>
+    <p>Has role: <span sec:authentication="authorities"></span></p>
+    <p><a th:href="@{/}" href="#">Home</a></p>
+    <p><a th:href="@{/logout}" href="#">Log out</a></p>
+    <p><a th:href="@{/view}" href="#">View Claims</a></p>
+
+    <h2>All Users</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iterStat : ${users}" th:class="${iterStat.odd} ? 'odd'">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstName + ' ' + user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <!-- Edit User Link -->
+                <a th:href="@{/user/edit-user/{id}(id=${user.id})}" href="#" class="btn btn-warning">Edit</a>
+
+                <!-- Delete User Link -->
+                <a th:href="@{/user/delete-user/{id}(id=${user.id})}" href="#" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Add your Thymeleaf/ThyLeaf dependency and JavaScript here if required -->
+</body>
+
+</html>

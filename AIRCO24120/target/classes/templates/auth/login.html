@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .form-signin {
+            width: 40%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        h3 {
+            text-align: center;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        input[type=text], input[type=password] {
+            width: calc(100% - 40px);
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        button[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        div {
+            color: red;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="/images/spc.png" alt="Logo" />
+</div>
+<form th:action="@{/login}" method="POST" class="form-signin">
+    <h3>Login</h3>
+    <input type="text" name="email" th:placeholder="Email" /> <br /><br />
+    <input type="password" th:placeholder="Password" name="password" /> <br /><br />
+    <button type="submit">Login</button> | <a th:href="@{/register}">Register</a><br />
+    <div th:if="${param.error}"><p>Email or Password is invalid.</p></div> <br />
+</form>
+</body>
+</html>

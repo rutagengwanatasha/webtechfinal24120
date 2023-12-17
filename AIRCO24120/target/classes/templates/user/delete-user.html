@@ -1,0 +1,59 @@
+<!-- Inside admin/delete-user.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete User</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .confirmation-box {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            background-color: #ff6347;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="confirmation-box">
+
+
+    <!-- Inside user/delete-user.html -->
+    <p>Are you sure you want to delete the user with ID: <span th:text="${user.id}"></span>?</p>
+    <form th:action="@{/user/delete-user/{id}(id=${user.id})}" method="post">
+        <button type="submit">Yes, Delete</button>
+    </form>
+
+</div>
+
+</body>
+</html>
